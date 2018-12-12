@@ -1,3 +1,2 @@
-# MementoMori
-
-OWO what's this
+# Quest Kit
+A tool for throwing together quests from thin air!
