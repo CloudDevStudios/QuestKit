@@ -38,7 +38,15 @@ namespace QuestKit
         {
             currentStage++;
 
-            Stages[currentStage].Begin();
+            ///Debug.Log("currentStage " + currentStage + "  Stages.Length " + Stages.Length);
+
+            if (currentStage < Stages.Length)
+            {
+                Stages[currentStage].Begin();
+            }
+            else {
+                Complete();
+            }
         }
 
         public override void Complete()

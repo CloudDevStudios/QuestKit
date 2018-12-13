@@ -27,17 +27,19 @@ namespace QuestKit
 
         public override void Complete()
         {
-            UpdateUI();
-            foreach (var item in objectives)
-            {
-                item.Complete();
-            }
+         
+            //foreach (var item in objectives)
+            //{
+            //    item.Complete();
+            //}
             base.Complete();
             quest.NextStage();
+
             
         }
         public void CompleteObjective()
         {
+            UpdateUI();
             foreach (var item in objectives)
             {
                 if (item.state == QuestState.FAILED)
@@ -48,11 +50,8 @@ namespace QuestKit
                 if (item.state == QuestState.ACTIVE)
                     return;
             }
-            UpdateUI();
+
             Complete();
-            
-          
-            
 
         }
 

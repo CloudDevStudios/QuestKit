@@ -19,6 +19,15 @@ namespace QuestKit
             base.Begin();
             var mark = GameObject.Instantiate(QuestManager.Instance.MarkerPrefab, Target);
             marker = mark.GetComponent<Marker>();
+
+            Selectable selectable = Target.gameObject.AddComponent<Selectable>();
+            selectable.triggeredActions += () =>
+            {
+                selectable.isSelectable = false;
+                Debug.Log("quest object was triggered. " + ObjectiveDescription);
+                Complete();
+                stage.CompleteObjective();
+            };
         }
 
         public override void Complete()
@@ -26,7 +35,7 @@ namespace QuestKit
             state = QuestState.COMPLETED;
             base.Complete();
             marker.HideMarker();
-            GameObject.Destroy(marker);
+            GameObject.Destroy(marker.gameObject);
         }
 
         public override void Focus()

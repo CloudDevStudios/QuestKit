@@ -32,10 +32,11 @@ namespace QuestKit
             UIMarker = GameObject.Instantiate(compass.CompassMarkerPrefab, compass.CompassImage.transform).GetComponent<Image>();
             
         }
+
         public void HideMarker()
         {
             Debug.Log("Marker Hid");
-            GetComponent<MeshRenderer>().enabled = false;
+            //GetComponent<MeshRenderer>().enabled = false;
             QuestManager.Instance.compass.HideMarker(this);
             GameObject.Destroy(UIMarker);
             
