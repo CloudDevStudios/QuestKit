@@ -10,8 +10,9 @@ namespace QuestKit
     public class Compass : MonoBehaviour {
 
         public RawImage CompassImage;
-        public GameObject MarkerPrefab;
-        public List<Marker> Markers;
+        public GameObject CompassMarkerPrefab;
+
+        internal List<Marker> Markers;
         public void Awake()
         {
             Markers = new List<Marker>();
@@ -21,9 +22,9 @@ namespace QuestKit
             var rect = CompassImage.uvRect;
             rect.x = (transform.rotation.eulerAngles.y / 360f);
             CompassImage.uvRect = rect;
+
             foreach (var item in Markers)
             {
-
                 var targetDir = item.transform.position - transform.position;
                 targetDir.y = 0;
                 var angle = Quaternion.LookRotation(targetDir.normalized,Vector3.up).eulerAngles.y;
@@ -35,12 +36,12 @@ namespace QuestKit
             }
         }
 
-        internal void BeginMarker(Marker marker)
+        internal void ShowMarker(Marker marker)
         {
             Markers.Add(marker);
         }
 
-        internal void EndMarker(Marker marker)
+        internal void HideMarker(Marker marker)
         {
             Markers.Remove(marker);
         }

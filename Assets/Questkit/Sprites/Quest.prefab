@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 222583418779734012}
   - component: {fileID: 114802680649171056}
   - component: {fileID: 114691927135948574}
+  - component: {fileID: 114403532011268074}
   m_Layer: 5
   m_Name: Quest
   m_TagString: Untagged
@@ -193,6 +194,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114403532011268074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1727862288607986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d1c24659a0dc2499b81312d0c135c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestTitle: {fileID: 114254982425297378}
+  QuestObjective: {fileID: 114548202263342742}
+  Display: {fileID: 114546279722002888}
 --- !u!114 &114546279722002888
 MonoBehaviour:
   m_ObjectHideFlags: 1

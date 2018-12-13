@@ -8,6 +8,7 @@ namespace QuestKit
     public class Marker : MonoBehaviour
     {
         private Camera mCamera;
+
         internal Image UIMarker;
 
         // Use this for initialization
@@ -16,23 +17,26 @@ namespace QuestKit
             mCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         }
 
-        // Update is called once per frame
         void FixedUpdate()
         {
             transform.LookAt(mCamera.transform);
         }
-        public void BeginDisplay()
+
+        public void ShowMarker()
         {
+
+            Debug.Log("Showing Marker");
             GetComponent<MeshRenderer>().enabled = true;
             var compass = QuestManager.Instance.compass;
-            compass.BeginMarker(this);
-            UIMarker = GameObject.Instantiate(compass.MarkerPrefab, compass.CompassImage.transform).GetComponent<Image>();
+            compass.ShowMarker(this);
+            UIMarker = GameObject.Instantiate(compass.CompassMarkerPrefab, compass.CompassImage.transform).GetComponent<Image>();
             
         }
-        public void EndDisplay()
+        public void HideMarker()
         {
+            Debug.Log("Marker Hid");
             GetComponent<MeshRenderer>().enabled = false;
-            QuestManager.Instance.compass.EndMarker(this);
+            QuestManager.Instance.compass.HideMarker(this);
             GameObject.Destroy(UIMarker);
             
         }

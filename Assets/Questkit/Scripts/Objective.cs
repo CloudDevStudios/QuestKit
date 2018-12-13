@@ -4,41 +4,43 @@ using UnityEngine;
 using UnityEngine.Events;
 namespace QuestKit
 {
-    public class Objective : MonoBehaviour
+    public class Objective : QuestObject
     {
-        public bool ObjectiveEnabled;
-        public bool ObjectiveDisplayed;
+        public string ObjectiveDescription;
         public Transform Target;
+
+        internal QuestState state = QuestState.INACTIVE;
+        internal QuestStage stage;
+
         private Marker marker;
-        public UnityEvent OnObjectiveComplete;
-        public UnityEvent OnObjectiveStart;
-        public string ObjectiveString;
 
-        private void Start()
+        public override void Begin()
         {
-            var mark = GameObject.Instantiate(QuestManager.Instance.MarkerPrefab,Target);
-            mark.GetComponent<MeshRenderer>().enabled = false;
+            base.Begin();
+            var mark = GameObject.Instantiate(QuestManager.Instance.MarkerPrefab, Target);
             marker = mark.GetComponent<Marker>();
-
-            if (ObjectiveEnabled)
-                ObjectiveStart();
         }
 
-        public void ObjectiveComplete()
+        public override void Complete()
         {
+            state = QuestState.COMPLETED;
+            base.Complete();
+            marker.HideMarker();
+            GameObject.Destroy(marker);
+        }
 
-            ObjectiveEnabled = true;
-            ObjectiveDisplayed = true;
-            marker.EndDisplay();
-            OnObjectiveComplete.Invoke();
-        }
-        public void ObjectiveStart()
+        public override void Focus()
         {
-            ObjectiveEnabled = true;
-            ObjectiveDisplayed = true;
-            marker.BeginDisplay();
-            OnObjectiveStart.Invoke();
+            base.Focus();
+            marker.ShowMarker();
         }
+
+        public override void UnFocus()
+        {
+            base.UnFocus();
+            marker.HideMarker();
+        }
+
 
     }
 
