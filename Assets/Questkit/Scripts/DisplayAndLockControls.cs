@@ -5,7 +5,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class DisplayAndLockControls : MonoBehaviour {
 
-    public FirstPersonController controller;
+    public FirstPersonController fpsController;
     public GameObject UI;
     public bool ShowingUI = false;
 
@@ -16,14 +16,18 @@ public class DisplayAndLockControls : MonoBehaviour {
             if (ShowingUI)
             {
                 UI.SetActive(false);
-                controller.enabled = (true);
+
+                if(fpsController)fpsController.enabled = (true);
+                
                 Cursor.visible = false;
                 ShowingUI = false;
             }
             else
             {
                 UI.SetActive(true);
-                controller.enabled = (false);
+
+                if (fpsController) fpsController.enabled = (false);
+
                 Cursor.visible = true;
                 ShowingUI = true;
                 Cursor.lockState = CursorLockMode.None;
