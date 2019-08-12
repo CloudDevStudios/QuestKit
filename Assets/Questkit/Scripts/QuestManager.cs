@@ -27,6 +27,11 @@ namespace QuestKit
         void Awake()
         {
             Instance = this;
+
+        }
+
+        private void Start()
+        {
             compass = GameObject.FindObjectOfType<Compass>();
             if (StartAllQuests)
             {
